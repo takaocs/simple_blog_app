@@ -1,2 +1,5 @@
 # base.txtのインストール
 -r base.txt
+
+# 静的解析
+flake8==3.7.9
