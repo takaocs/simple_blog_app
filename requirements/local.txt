@@ -3,3 +3,6 @@
 
 # 静的解析
 flake8==3.7.9
+
+# デバッグ
+django-debug-toolbar==2.2
