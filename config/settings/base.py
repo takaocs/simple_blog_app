@@ -137,6 +137,12 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = (str(ROOT_DIR.path('static')),)
 
 
+# Media
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = str(ROOT_DIR.path('media'))
+
+
 # SECURITY
 
 # HTTPクッキーを有効にするための設定
