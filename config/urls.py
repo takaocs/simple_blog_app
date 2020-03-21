@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 """config URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
@@ -14,8 +16,27 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import include, path
+
+from django.conf import settings
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+from django.conf.urls.static import static
+
 
 urlpatterns = [
+    # Django Admin
     path('admin/', admin.site.urls),
+    # Summer Note
+    path('summernote/', include('django_summernote.urls')),
 ]
+# Static Files
+urlpatterns += staticfiles_urlpatterns()
+# Media Files
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+# django-debug-toolbar
+if 'debug_toolbar' in settings.INSTALLED_APPS:
+    import debug_toolbar
+    urlpatterns = [
+        path('__debug__/', include(debug_toolbar.urls)),
+    ] + urlpatterns

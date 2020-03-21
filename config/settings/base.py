@@ -46,7 +46,9 @@ INSTALLED_APPS = [
     'django.contrib.humanize',
     # Apps
     # Third Party
-    # 'widget_tweaks',
+    'widget_tweaks',
+    'django_filters',
+    'django_summernote',
 ]
 
 MIDDLEWARE = [
@@ -137,6 +139,12 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = (str(ROOT_DIR.path('static')),)
 
 
+# Media
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = str(ROOT_DIR.path('media'))
+
+
 # SECURITY
 
 # HTTPクッキーを有効にするための設定
@@ -145,3 +153,17 @@ CSRF_COOKIE_HTTPONLY = True
 SECURE_BROWSER_XSS_FILTER = True
 # このサイトをiframeで使用することを不可とする
 X_FRAME_OPTIONS = 'DENY'
+
+
+# カンマ区切り
+NUMBER_GROUPING = 3
+
+
+# Summer Note
+
+SUMMERNOTE_THEME = 'bs4'    # Bootstrap4
+SUMMERNOTE_CONFIG = {
+    'summernote': {
+        'width': '100%'
+    }
+}
