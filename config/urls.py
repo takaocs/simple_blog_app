@@ -24,6 +24,8 @@ from django.conf.urls.static import static
 
 
 urlpatterns = [
+    # Blog App
+    path('', include('apps.blog.urls')),
     # Django Admin
     path('admin/', admin.site.urls),
     # Summer Note
