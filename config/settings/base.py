@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     # 便利なテンプレートタグの追加
     'django.contrib.humanize',
     # Apps
+    'apps.blog.apps.BlogConfig',
     # Third Party
     'widget_tweaks',
     'django_filters',
