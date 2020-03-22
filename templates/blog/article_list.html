@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block contents %}
+	{% if object_list %}
+		{# 検索・一覧・ページング #}
+	{% else %}
+		{% if request.GET %}
+			{# 検索の結果、0件の場合 #}
+			あり
+		{% else %}
+			{# そもそもデータがない場合 #}
+			なし
+		{% endif %}
+	{% endif %}
+{% endblock %}
