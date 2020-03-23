@@ -13,11 +13,13 @@ class Article(models.Model):
     # タイトル
     title = models.CharField(
         'タイトル',
-        max_length=100
+        max_length=100,
+        blank=True
     )
     # 内容
     contents = models.TextField(
-        '内容'
+        '内容',
+        blank=True
     )
     # 公開フラグ
     is_open = models.BooleanField(
