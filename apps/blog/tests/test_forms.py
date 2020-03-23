@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 
+import datetime
 from django.test import TestCase
 
 # Apps
@@ -11,14 +12,6 @@ from ..forms import ArticlePostForm
 class ArticlePostFormTestCase(TestCase):
     """
     ブログの記事を投稿するフォームのテスト
-
-    - 一時保存（is_open が False）の場合
-        - タイトルが未入力でも登録できるかどうか
-        - 内容が未入力でも登録できるかどうか
-    - 公開（is_open が True）の場合
-        - タイトルが未入力だとエラーになるかどうか
-        - 内容が未入力だとエラーになるかどうか
-        - 公開日時に現在時刻が登録されるかどうか
     """
     def test_is_open_false_title_not_required(self):
         """
@@ -75,3 +68,36 @@ class ArticlePostFormTestCase(TestCase):
         self.assertFalse(form.is_valid())
         # エラーメッセージも確認
         self.assertEqual(form.errors['contents'][0], '記事の内容を入力してください。')
+
+    def test_save_is_open_true(self):
+        """
+        一時保存の場合、公開日時は登録されない
+        """
+        form = ArticlePostForm(
+            data={
+                'is_open': False
+            }
+        )
+        form.is_valid()
+        # 登録
+        article = form.save()
+
+        # 値のチェック
+        self.assertIsNone(article.open_time)
+
+    def test_save_is_open_true(self):
+        """
+        公開の場合、公開日時が登録される
+        """
+        form = ArticlePostForm(
+            data={
+                'title': 'テスト',
+                'contents': 'テスト',
+                'is_open': True
+            }
+        )
+        form.is_valid()
+        # 登録
+        article = form.save()
+
+        self.assertIsInstance(article.open_time, datetime.datetime)
