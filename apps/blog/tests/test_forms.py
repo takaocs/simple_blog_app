@@ -58,7 +58,7 @@ class ArticlePostFormTestCase(TestCase):
         # バリデーションの確認
         self.assertFalse(form.is_valid())
         # エラーメッセージも確認
-        elf.assertEqual(form.errors['title'][0], 'タイトルを入力してください。')
+        self.assertEqual(form.errors['title'][0], 'タイトルを入力してください。')
 
     def test_is_open_true_contents_required(self):
         """
@@ -74,4 +74,4 @@ class ArticlePostFormTestCase(TestCase):
         # バリデーションの確認
         self.assertFalse(form.is_valid())
         # エラーメッセージも確認
-        elf.assertEqual(form.errors['contents'][0], '記事の内容を入力してください。')
+        self.assertEqual(form.errors['contents'][0], '記事の内容を入力してください。')
