@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from django import forms
+from django.utils import timezone
 # SummerNote
 from django_summernote.widgets import SummernoteWidget
 
@@ -39,3 +40,18 @@ class ArticlePostForm(forms.ModelForm):
             self._add_error_required('contents', '記事の内容を入力してください。')
 
         return is_open
+
+    def save(self, commit=True):
+        """
+        公開・一時保存によって登録処理を変更する
+        """
+        instance = super().save(commit=False)
+        if commit:
+            # 公開の値を取得
+            is_open = self.cleaned_data['is_open']
+            if is_open:
+                # 公開日時を設定
+                instance.open_time = timezone.now()
+            instance.save()
+
+        return instance
