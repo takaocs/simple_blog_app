@@ -2,7 +2,7 @@
 
 from django.urls import path
 # views
-from .views import *
+from .views import *    # noqa
 
 
 # app_nameを設定するとエラーになる
