@@ -69,7 +69,7 @@ class ArticlePostFormTestCase(TestCase):
         # エラーメッセージも確認
         self.assertEqual(form.errors['contents'][0], '記事の内容を入力してください。')
 
-    def test_save_is_open_true(self):
+    def test_save_is_open_false(self):
         """
         一時保存の場合、公開日時は登録されない
         """

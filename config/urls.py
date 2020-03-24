@@ -29,7 +29,8 @@ urlpatterns = [
     # Django Admin
     path('admin/', admin.site.urls),
     # Summer Note
-    path('summernote/', include('django_summernote.urls')),
+    # path('summernote/', include('django_summernote.urls')),
+    path('summernote/', include('apps.blog.sn_urls')),
 ]
 # Static Files
 urlpatterns += staticfiles_urlpatterns()
