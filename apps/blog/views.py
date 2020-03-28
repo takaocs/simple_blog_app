@@ -1,11 +1,15 @@
 # -*- coding: utf-8 -*-
 
-from django.views.generic import ListView, CreateView
+from django.views.generic import CreateView
 from django.urls import reverse_lazy
+
+# django_filter
+from django_filters.views import FilterView
 
 # Apps
 from .models import Article
 from .forms import ArticlePostForm
+from .filters import ArticleFilter
 
 # Summer Noteに関連するモジュール
 from django_summernote.views import (
@@ -18,12 +22,18 @@ from django.views.decorators.clickjacking import xframe_options_sameorigin
 # Create your views here.
 
 
-class ArticleListView(ListView):
+class ArticleListView(FilterView):
     """
     一覧ページ
     """
+    # フィルターセット
+    filterset_class = ArticleFilter
     # クエリセット
     queryset = Article.objects.filter(is_deleted=False)
+    # 10件で1ページとする
+    paginate_by = 1
+    # 並び替えの設定
+    ordering = '-id'
     # テンプレート
     template_name = 'blog/article_list.html'
 

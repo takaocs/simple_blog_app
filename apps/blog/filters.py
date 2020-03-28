@@ -31,8 +31,8 @@ class ArticleFilter(django_filters.FilterSet):
     # 並び替え
     o = django_filters.OrderingFilter(
         fields=(
-            ('open_time', 'open'),
-            ('record_time', 'record'),
+            ('-open_time', 'open'),
+            ('-record_time', 'record'),
         ),
         choices=(
             ('open', '公開日時順'),
